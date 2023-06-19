@@ -1,129 +1,54 @@
 <!DOCTYPE html>
 <html>
-<style>
-	/*set border to the form*/
-	
-	form {
-		border: 3px solid #f1f1f1;
-	}
-	/*assign full width inputs*/
-	
-	input[type=text],
-	input[type=password] {
-		width: 100%;
-		padding: 12px 20px;
-		margin: 8px 0;
-		display: inline-block;
-		border: 1px solid #ccc;
-		box-sizing: border-box;
-	}
-	/*set a style for the buttons*/
-	
-	button {
-		background-color: #4CAF50;
-		color: white;
-		padding: 14px 20px;
-		margin: 8px 0;
-		border: none;
-		cursor: pointer;
-		width: 100%;
-	}
-	/* set a hover effect for the button*/
-	
-	button:hover {
-		opacity: 0.8;
-	}
-	/*set extra style for the cancel button*/
-	
-	.cancelbtn {
-		width: auto;
-		padding: 10px 18px;
-		background-color: #f44336;
-	}
-	/*centre the display image inside the container*/
-	
-	.imgcontainer {
-		display: block;
-		/* width: 100px;
-		height: 100px;
-		position: relative;
-		left: 35%;
-		right: 35%; */
-	}
-	/*set image properties*/
-	
-	img.avatar {
-		position: relative;
-		left: 35%;
-		right: 35%;
-		align-items: center;
-		border-radius: 50%;
-		transform: translate(-50%, -50%);
-	}
-	/*set padding to the container*/
-	
-	.container {
-		padding: 16px;
-		position: absolute;
-		left: 30%;
-  		right: 30%;
-		margin: auto;
-	}
-	/*set the forgot password text*/
-	
-	span.psw {
-		float: right;
-		padding-top: 16px;
-	}
-	/*set styles for span and cancel button on small screens*/
-	
-	@media screen and (max-width: 300px) {
-		span.psw {
-			display: block;
-			float: none;
-		}
-		.cancelbtn {
-			width: 100%;
-		}
-	}
 
-	.center {
-  margin: auto;
-  left: 50%;
-  right: 50%;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
-}
-</style>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Free Bulma template</title>
+    <link rel="stylesheet" href="static/styles/ext.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
+    <!-- Bulma Version 0.9.x-->
+</head>
 
 <body>
+    <section class="hero is-success is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h3 class="title has-text-white">Apna Bank</h3>
+                    <hr class="login-hr">
+                    <p class="subtitle has-text-white">Please login to proceed.</p>
+                    <div class="box">
+                        <figure class="avatar">
+                            <img src="https://via.placeholder.com/150" style="border-radius: 50%; width: 100px; height: 100px;">
+                        </figure>
+                        <form action="/acc" method="post">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-small" type="text" name="uname" placeholder="Your Account Number" autofocus="">
+                                </div>
+                            </div>
 
-	<h2>Login Form</h2>
-	<!--Step 1 : Adding HTML-->
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-small" type="password" name="upass" placeholder="Your Password">
+                                </div>
+                            </div>
+                            
+                            <input type="submit" class="button is-block is-info is-medium is-fullwidth">
 
-	<div class="imgcontainer">
-		<img src=
-"https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
-			alt="Avatar" class="avatar">
-	</div>
-	<br>
-
-	<form action="/acc" method="post">
-		
-
-		<div class="container">
-			<label><b>Username</b></label>
-			<input type="text" placeholder="Enter Username" name="uname" required>
-
-			<label><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
-
-			<button type="submit">Login</button>
-			<input type="checkbox" checked="checked"> Remember me
-		</div>
-
-	</form>
+                        </form>
+                    </div>
+                    <p class="has-text-grey">
+                        <a href="../">Sign Up</a> &nbsp;·&nbsp;
+                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
+                        <a href="../">Need Help?</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 
