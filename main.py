@@ -32,11 +32,9 @@ def udashboard():
 def emplogin():
     return render_template('emplogin.html')
 
-@app.route('/acc', methods=['post'])
+@app.route('/acc')
 def accounts():
-    # data = request.args
-    data = request.form
-    return jsonify(data)
+    return render_template('accopen.html')
 
 @app.before_request
 def before_request():
