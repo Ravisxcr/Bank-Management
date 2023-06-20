@@ -1,21 +1,21 @@
-import mysql
-class Datbase:
+from sqlalchemy import create_engine, text
 
-    def __init__(self):
-        self.__uname = 'master'
-        self.__upass = 'nopassword'
+engine = create_engine("mysql://root:ubuntu@localhost/university",echo = True)
 
-    def ref(self,musername, mpassword):
+def load_faculty():
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from faculty"))
+        return result.all()
+    
+def load_student():
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from students"))
+        return result.all()
 
-        try:
-            if musername == self.__uname and mpassword == self.__upass:
+def load_student(dept):
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from students where dept = :val"),val=dept)
+        return result.all()
 
-                db = mysql.connector.connect(host='localhost', user='root', password='ubuntu')
-
-                return db, 'sucess'
-            else:
-                return False, 'Authentican failed'
-        except:
-            return False, 'some error occured'
 
         
