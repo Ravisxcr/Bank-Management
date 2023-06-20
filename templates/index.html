@@ -1,38 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static\styles\style.css">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="static/styles/ext.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin One HTML - Bulma Admin Dashboard</title>
 </head>
 <body>
-    
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Department</th>
-                <th scope="col">Email</th>
-                <th scope="col">Office</th>
-              </tr>
-            </thead>
-            <tbody>
-        {% for i in query %}
-        <tr>
-          <td>{{i[0]}}</td>
-          <td>{{i[1]}}</td>
-          <td>{{i[2]}}</td>
-          <td>{{i[3]}}</td>
-          <td>{{i[4]}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-      <a href="/student" class="btn btn-primary btn-lg" >Student</a>
-    
-   
+  <section class="hero is-success is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        
+        <nav class="navbar is-fixed-top">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+              <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="112" height="28">
+            </a>
+        
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+        </nav>
+
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Component
+            </p>
+            <button class="card-header-icon" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </header>
+          <div class="card-content left">
+            <div class="content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+              <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item">Save</a>
+            <a href="#" class="card-footer-item">Edit</a>
+            <a href="#" class="card-footer-item">Delete</a>
+          </footer>
+        </div>
+
+        <!-- Message bar -->
+
+        <article class="message is-primary">
+          <div class="message-header">
+            <p>Primary</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body">
+            
+            <!-- Html Tables -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><abbr title="Transaction_date">Tr. Date</abbr></th>
+                  <th><abbr title="Withdrawal">Withdrawal</abbr></th>
+                  <th><abbr title="Deposit">Deposit</abbr></th>
+                  <th><abbr title="Lost">Balance</abbr></th>
+                  <th><abbr title="Narration">Narration</abbr></th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>38</td>
+                  <td>23</td>
+                  <td>12</td>
+                  <td>3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
 </body>
 </html>

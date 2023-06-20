@@ -7818,6 +7818,7 @@ label.panel-block:hover {
 
 .columns.is-mobile>.column.is-full {
     flex: none;
+
     width: 100%
 }
 
@@ -13059,4 +13060,15 @@ print {
 .footer {
     background-color: #fafafa;
     padding: 3rem 1.5rem 6rem
+}
+
+/* User */
+
+.bd-notification.is-primary {
+    background-color: #00d1b2;
+    color: #fff
+}
+.left{
+    text-align: left;
+    margin: 4px 4px 4px 4px;
 }

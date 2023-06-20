@@ -23,15 +23,19 @@ def load_student(dept):
 
 print(load_student(dept='phy'))
 
-@app.route("/")
-def index():
-    return render_template('index.html',query=load_faculty())
+# @app.route("/")
+# def index():
+#     return render_template('index.html',query=load_faculty())
 
-@app.route("/student")
+@app.route("/profile")
 def student():
-    return render_template('student.html', quer=load_student(dept='phy'))
+    return render_template('index.html')
 
-@app.route('/newacc')
+# @app.route("/student")
+# def student():
+#     return render_template('student.html', quer=load_student(dept='phy'))
+
+@app.route('/')
 def new_accounts():
     return render_template('account.html')
 
