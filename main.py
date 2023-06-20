@@ -28,10 +28,6 @@ def udashboard():
        return redirect(url_for('userlogin'))
        
 
-# @app.route("/student")
-# def student():
-#     return render_template('student.html', quer=load_student(dept='phy'))
-
 @app.route('/admin')
 def emplogin():
     return render_template('emplogin.html')
