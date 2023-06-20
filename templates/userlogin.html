@@ -23,7 +23,7 @@
                         <figure class="avatar">
                             <img src="{{url_for('static', filename='pngwing.png')}}" style="border-radius: 50%; width: 100px; height: 100px;">
                         </figure>
-                        <form action="/acc" method="post">
+                        <form action="/" method="post">
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-small" type="text" name="uname" placeholder="Your Account Number" autofocus="" required>
@@ -41,9 +41,8 @@
                         </form>
                     </div>
                     <p class="has-text-grey">
-                        <a href="../">Sign Up</a> &nbsp;·&nbsp;
-                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-                        <a href="../">Need Help?</a>
+                        <a href="{{url_for('emplogin')}}">Customer Login
+                        </a>
                     </p>
                 </div>
             </div>
