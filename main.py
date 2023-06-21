@@ -99,7 +99,7 @@ def credit_msg():
     session['payee'] = data['payee']
     return redirect(url_for('credit_msgr'))
   else:
-    return render_template('userlogin.html')
+    return redirect(url_for('userlogin'))
   
 @app.route('/credit_msgr', methods=['POST','GET'])
 def credit_msgr():
@@ -123,7 +123,7 @@ def accopen():
     session['acc'],session['msg'] = new_acc(data)
     return redirect(url_for('accopen_msgr'))
   else:
-    return render_template('userlogin.html')
+    return redirect(url_for('userlogin'))
   
 @app.route('/accopen_msgr', methods=['POST','GET'])
 def accopen_msgr():
@@ -138,8 +138,12 @@ def accopen_msgr():
 
 
 @app.route('/data', methods=['GET','POST'])
-def data():
-  return jsonify(request.form)
+def customer():
+  if 'ecode' in session:
+    data = all_acc_detail()
+    return render_template('allacc.html',data=data)
+  else:
+    return redirect(url_for('userlogin'))
 
 
 

@@ -149,3 +149,8 @@ def new_acc(data):
             print('Accountftgyhuj   ',acc_no)
             result = conn.execute(text('insert into account_login (Account_number, Password) values (:acc_no, :upass)'),acc_no=acc_no, upass=upass)
             return acc_no, 'N'
+        
+def all_acc_detail():
+     with engine.connect() as conn:
+         result = conn.execute(text('select Account_number, Account_name, Address, Balance, Account_type, Branch_city, Branch_name, ifsc as IFSC from accounts a left join branch b on a.Branch_code = b.Branch_code'))
+         return result.all()
