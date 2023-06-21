@@ -24,12 +24,8 @@
                             <img src="{{url_for('static', filename='pngwing.png')}}" style="border-radius: 50%; width: 100px; height: 100px;">
                         </figure>
 
-                        <div class="notification is-primary">
-                            Primar lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur.
-                          </div>
 
-                        <form action="/data" method="post">
+                        <form action="{{url_for('debit_msg')}}" method="post">
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-small" type="    number" name="uname" placeholder="Your Account Number" autofocus="" required>

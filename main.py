@@ -19,6 +19,7 @@ def userlogin():
     
     elif request.form['acc_type'] == 'Employee' and check_elogin(request.form['uname'],request.form['upass']):
       session['user'] = request.form['uname']
+      session['ecode'] = emp_code(session['user'])
       return redirect(url_for('edashboard'))
     
   return render_template('userlogin.html')
@@ -63,6 +64,59 @@ def deposit():
   return render_template('deposit.html')
 
 
+@app.route('/debit_msg', methods=['GET','POST'])
+def debit_msg():
+  if request.method == 'POST':
+    data = request.form
+    session['msg'] = user_pay(data)
+    session['amt'] = data['amount']
+    session['acc'] = data['uname']
+    return redirect(url_for('debit_msgr'))
+  return render_template('userlogin.html')
+
+@app.route('/debit_msgr')
+def debit_msgr():
+  msg,amt,acc = None,None,None
+  if 'msg' in session:
+    msg = session['msg']
+    session.pop('msg',None)
+  if 'amt' in session:
+    amt = session['amt']
+    session.pop('amt',None)
+  if 'acc' in session:
+    acc = session['acc']
+    session.pop('acc',None)
+  return render_template('debit_msg.html', msg=msg, amt=amt, acc=acc)
+
+@app.route('/credit_msg', methods=['POST','GET'])
+def credit_msg():
+  if request.method == 'POST' and g.user is not None:
+    data = request.form
+    session['msg'] = cr_amt(data,session['user'])
+    session['amt'] = data['amount']
+    session['payee'] = data['payee']
+    return redirect(url_for('credit_msgr'))
+  else:
+    return render_template('userlogin.html')
+  
+@app.route('/credit_msgr', methods=['POST','GET'])
+def credit_msgr():
+  msg,amt,payee = None,None,None
+  if 'msg' in session:
+    msg = session['msg']
+    session.pop('msg',None)
+  if 'amt' in session:
+    amt = session['amt']
+    session.pop('amt',None)
+  if 'payee' in session:
+    payee = session['payee']
+    session.pop('payee',None)
+  return render_template('credit_msg.html', msg=msg, amt=amt, acc=payee)
+
+
+
+
+
 
 @app.route('/data', methods=['GET','POST'])
 def data():
@@ -80,6 +134,8 @@ def before_request():
 @app.route('/dropsession')
 def dropsession():
   session.pop('user',None )
+  if 'ecode' in session:
+    session.pop('ecode',None)
   return redirect(url_for('userlogin'))
 
 app.run(debug=True)

@@ -84,4 +84,40 @@ def br_customer(br_code):
         query = conn.execute(text('select * from accounts where Branch_code = :br_code'),br_code=br_code)
         return query.all()
 
+def emp_exits(emp_no):
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from employee where Emp_number = :emp_no"),emp_no=emp_no)
+        result = result.all()
+        if len(result) > 0:
+            return True
+        else:
+            return False
 
+def cus_exist(acc_no):
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from account_login where Account_number = :acc"),acc=acc_no)
+        result = result.all()
+        print(result)
+        if len(result) > 0 :
+            return True
+        else:
+            return False
+        
+def emp_code(emp_no):
+    with engine.connect() as conn:
+        query = conn.execute(text('select Branch_code from employee where Emp_number = :emp_no'),emp_no=emp_no)
+        return query.all()[0][0]
+
+def cr_amt(data,emp):
+    if emp_exits(emp) and check_elogin(emp,data['epass']):
+        if cus_exist(data['payee']):
+            current_bal = ubalance(data['payee'])[0][0]
+            with engine.connect() as conn:
+                new_bal = current_bal+int(data['amount'])
+                result = conn.execute(text("insert into tranaction (Tr_amount,  Tr_type,  Account_number,  tr_info, tr_balance) values (:amt, 'C', :acc, :trinfo, :trbal)"),amt=data['amount'],acc=data['payee'], trinfo='Cash Deposit '+str(data['payee']), trbal=new_bal)
+                result = conn.execute(text('update accounts set Balance = :bal where  Account_number = :acc_no'),bal=new_bal, acc_no=data['payee'])
+            return 'S'
+        else:
+            return 'NO'
+    else:
+        return 'F'
