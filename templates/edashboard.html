@@ -31,7 +31,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-              Account Number : {{adetails[0][0]}}
+              Employee Number : {{emp_det[0][0]}}
             </p>
             <button class="card-header-icon" aria-label="more options">
               <span class="icon">
@@ -42,20 +42,21 @@
           <div class="card-content left">
             <div class="columns is-desktop">
               <div class="column">
-                <b>Branch Name : </b> {{bdetails[0][2]}} <br>
-                <b>Branch Address : </b>{{bdetails[0][1]}}<br>
-                <b>IFSC Code : </b> {{bdetails[0][3]}}
+                <b>Branch Name : </b> {{br_detail[0][2]}} <br>
+                <b>Branch Address : </b>{{br_detail[0][1]}}<br>
+                <b>IFSC Code : </b> {{br_detail[0][3]}}
               </div>
               <div class="column">
-                <b>Customer Name : </b> {{adetails[0][1]}}  <br>
-                <b>Customer Addres : </b> {{adetails[0][3]}}<br>
-                <b>Account Type : </b> {{adetails[0][5]}}
+                <b>Employee Name : </b> {{emp_det[0][1]}}  <br>
+                <b>Employee Addres : </b> {{emp_det[0][3]}}<br>
+                <b>Designation : </b> {{emp_det[0][4]}}
               </div>
             </div>
           </div>
           <footer class="card-footer">
-            <p class="card-footer-item "><b>Balance : &nbsp; ₹ &nbsp;</b> {{adetails[0][4]}}</p>
-            <a href="/transaction" class="card-footer-item">Pay</a>
+            <a href="{{url_for('accounts')}}" class="card-footer-item">New Account</a>
+            <a href="/deposit" class="card-footer-item">Cash Deposit</a>
+            <a href="/utr" class="card-footer-item">Customer</a>
             <a href="/dropsession" class="card-footer-item">Logout</a>
           </footer>
         </div>
@@ -64,7 +65,7 @@
 
         <article class="message is-primary">
           <div class="message-header">
-            <p>Account statement</p>
+            <p>Transaction Details</p>
             <!-- <button class="delete" aria-label="delete"></button> -->
           </div>
           <div class="message-body">
@@ -73,19 +74,22 @@
             <table class="table center">
               <thead>
                 <tr>
-                  <th><abbr title="Transaction_date">Transaction Date</abbr></th>
+                  <th><abbr title="Tran_id">Trans_id</abbr></th>
+                  <th><abbr title="Tran_date">Trans Date</abbr></th>
                   <th><abbr title="Withdrawal">Withdrawal</abbr></th>
                   <th><abbr title="Deposit">Deposit</abbr></th>
-                  <th><abbr title="Lost">Balance</abbr></th>
+                  <th><abbr title="Acc_no">Acc_no</abbr></th>
                   <th><abbr title="Narration">Narration</abbr></th>
+                  <th><abbr title="bal">Balance</abbr></th>
                 </tr>
               </thead>
               
               <tbody>
                 
-                  {% for tr in trdetails %}
+                  {% for tr in tr_detail %}
                   <tr>
-                  <th>{{tr[1]}}</th>
+                  <th>{{tr[0]}}</th>
+                  <td>{{tr[1]}}</td>
                   {% if tr[3] == 'D' %}
                   <td>{{tr[2]}}</td>
                   <td>{{""}}</td>
@@ -93,8 +97,9 @@
                   <td >{{""}}</td>
                   <td>{{tr[2]}}</td>
                   {% endif %}
-                  <td>{{tr[6]}}</td>
+                  <td>{{tr[4]}}</td>
                   <td>{{tr[5]}}</td>
+                  <td>{{tr[6]}}</td>
                 </tr>
                   {% endfor %}
               </tbody>

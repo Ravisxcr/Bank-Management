@@ -16,7 +16,7 @@
                 <div class="column is-4 is-offset-4">
                     <h3 class="title has-text-white">Apna Bank</h3>
                     <hr class="login-hr">
-                    <p class="subtitle has-text-white">Customer login page</p>
+                    <p class="subtitle has-text-white">Account login page</p>
                     <div class="box">
                         <figure class="avatar">
                             <img src="{{url_for('static', filename='pngwing.png')}}" style="border-radius: 50%; width: 100px; height: 100px;">
@@ -24,22 +24,31 @@
                         <form action="/" method="post">
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-small" type="text" name="uname" placeholder="Your Account Number" autofocus="" required>
+                                    <input class="input is-normal" type="text" name="uname" placeholder="Your Account Number" autofocus="" required>
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-small" type="password" name="upass" placeholder="Your Password" required>
+                                    <input class="input is-normal" type="password" name="upass" placeholder="Your Password" required>
+                                </div>
+                            </div>
+
+                            <div class="control">
+                                <div class="select">
+                                <select name="acc_type" class="select is-rounded is-normal">
+                                    <option>Customer</option>
+                                    <option>Employee</option>
+                                </select>
                                 </div>
                             </div>
                             
-                            <input type="submit" class="button is-block is-info is-medium is-fullwidth">
+                            <input type="submit" class="button is-block is-info is-normal is-fullwidth">
 
                         </form>
                     </div>
                     <p class="has-text-grey">
-                        <a href="{{url_for('emplogin')}}">Customer Login
+                        <a href="">Employee Login
                         </a>
                     </p>
                 </div>

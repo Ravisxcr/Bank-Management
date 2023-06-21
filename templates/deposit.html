@@ -18,36 +18,53 @@
                 <div class="column is-4 is-offset-4">
                     <h3 class="title has-text-white">Apna Bank</h3>
                     <hr class="login-hr">
-                    <p class="subtitle has-text-white">Employee login page</p>
+                    <p class="subtitle has-text-white">Bank payment page</p>
                     <div class="box">
                         <figure class="avatar">
                             <img src="{{url_for('static', filename='pngwing.png')}}" style="border-radius: 50%; width: 100px; height: 100px;">
                         </figure>
-                        <form action="/acc" method="post">
+
+                        <div class="notification is-primary">
+                            Cash Deposit
+                          </div>
+
+                        <form action="/data" method="post">
+                            
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-small" type="text" name="uname" placeholder="Your Account Number" autofocus="" required>
+                                    <input class="input is-small" type="text" name="payee" placeholder="Payee Account">
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-small" type="password" name="upass" placeholder="Your Password" required>
+                                    <input class="input is-small" type="password" name="epass" placeholder="Employee Password">
                                 </div>
                             </div>
 
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-small" type="text" name="upass" placeholder="OTP">
-                                </div>
+
+                            <div class="field has-addons">
+                                <p class="control">
+                                  <span class="select">
+                                    <select>
+                                      <option>₹</option>
+                                    </select>
+                                  </span>
+                                </p>
+                                <p class="control">
+                                  <input class="input" type="number" name="amount" placeholder="Amount of money">
+                                </p>
+                                <p class="control">
+                                    <input type="submit" class="button is-block is-info is-normal is-fullwidth" value="Deposit">
+                            </p>
                             </div>
                             
-                            <input type="submit" class="button is-block is-info is-medium is-fullwidth">
+                            <!-- <a href="#" class="button is-block is-info is-medium is-fullwidth"> Pay the amount </a> -->
 
                         </form>
                     </div>
                     <p class="has-text-grey">
-                        <a href="{{url_for('userlogin')}}">Customer Login
+                        <a href="{{url_for('edashboard')}}">Cancel
                         </a>
                         <!-- <a href="../">Forgot Password</a> &nbsp;·&nbsp;
                         <a href="../">Need Help?</a> -->
