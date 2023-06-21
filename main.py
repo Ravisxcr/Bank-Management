@@ -54,16 +54,17 @@ def accounts():
     return redirect(url_for('userlogin'))
 
 
-# 
+# User withdrawl
 @app.route('/transaction',methods=['POST','GET'])
 def utranaction():
-  return render_template('utransaction.html')
+  return render_template('withdrawl.html')
 
+# Employee deposit to User
 @app.route('/deposit',methods=['POST','GET'])
 def deposit():
   return render_template('deposit.html')
 
-
+# Message when amount is debited
 @app.route('/debit_msg', methods=['GET','POST'])
 def debit_msg():
   if request.method == 'POST':
@@ -88,6 +89,7 @@ def debit_msgr():
     session.pop('acc',None)
   return render_template('debit_msg.html', msg=msg, amt=amt, acc=acc)
 
+# Message when amount is credited
 @app.route('/credit_msg', methods=['POST','GET'])
 def credit_msg():
   if request.method == 'POST' and g.user is not None:
@@ -113,9 +115,26 @@ def credit_msgr():
     session.pop('payee',None)
   return render_template('credit_msg.html', msg=msg, amt=amt, acc=payee)
 
-
-
-
+# Account Opening
+@app.route('/accopen', methods=['POST','GET'])
+def accopen():
+  if request.method == 'POST' and g.user is not None:
+    data = request.form
+    session['acc'],session['msg'] = new_acc(data)
+    return redirect(url_for('accopen_msgr'))
+  else:
+    return render_template('userlogin.html')
+  
+@app.route('/accopen_msgr', methods=['POST','GET'])
+def accopen_msgr():
+  acc, msg = session['acc'],session['msg']
+  if 'msg' in session:
+    msg = session['msg']
+    session.pop('msg',None)
+  if 'acc' in session:
+    acc = session['acc']
+    session.pop('acc',None)
+  return render_template('accopen_msg.html', msg=msg, acc=acc)
 
 
 @app.route('/data', methods=['GET','POST'])
@@ -124,13 +143,14 @@ def data():
 
 
 
-
+# Run before each request
 @app.before_request
 def before_request():
   g.user = None
   if 'user' in session:
     g.user = session['user']
 
+# Logout
 @app.route('/dropsession')
 def dropsession():
   session.pop('user',None )

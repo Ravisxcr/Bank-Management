@@ -21,9 +21,12 @@
                     <p class="subtitle has-text-white">User payment page</p>
                     <div class="box">
                         <figure class="avatar">
-                            <img src="{{url_for('static', filename='pngwing.png')}}" style="border-radius: 50%; width: 100px; height: 100px;">
+                            <img src="{{url_for('static', filename='cash-94.png')}}" style="border-radius: 50%; width: 100px; height: 100px;">
                         </figure>
 
+                        <div class="notification is-warning">
+                            Cash Transfer
+                          </div>
 
                         <form action="{{url_for('debit_msg')}}" method="post">
                             <div class="field">
@@ -66,7 +69,7 @@
                         </form>
                     </div>
                     <p class="has-text-grey">
-                        <a href="{{url_for('udashboard')}}">Cancel
+                        <a href="{{url_for('udashboard')}}">Return to Dashboard
                         </a>
                         <!-- <a href="../">Forgot Password</a> &nbsp;·&nbsp;
                         <a href="../">Need Help?</a> -->

@@ -35,7 +35,7 @@ def user_pay(data):
     print(data)
     if check_ulogin(data['uname'],data['upass']): 
         current_bal = ubalance(data['uname'])[0][0]
-        if  current_bal> int(data["amount"]) + 50:
+        if  current_bal> int(data["amount"]) :
             with engine.connect() as conn:
                 new_bal = current_bal-int(data['amount'])
                 result = conn.execute(text("insert into tranaction (Tr_amount,  Tr_type,  Account_number,  tr_info, tr_balance) values (:amt, 'D', :acc, :trinfo, :trbal)"),amt=data['amount'],acc=data['uname'], trinfo='ONLINE_PAID_TO_'+str(data['payee']), trbal=new_bal)
@@ -121,3 +121,31 @@ def cr_amt(data,emp):
             return 'NO'
     else:
         return 'F'
+
+
+def branch_code(branch):
+    with engine.connect() as conn:
+        query = conn.execute(text('select Branch_code from branch where Branch_name = :branch'),branch=branch)
+        return query.all()[0][0]  
+
+def new_acc(data):
+    with engine.connect() as conn:
+        acc_type = data['acc_type']
+        amt = data['amt']
+        branch = data['branch']
+        gender = data['gender']
+        uadd = data['uadd']
+        name = data['uname']
+        upass  = data['upass']
+        br_code = branch_code(branch)
+        try:
+            query = conn.execute(text('select Account_number from accounts where Account_name = :name and Gender = :gender and Address = :uadd and Balance = :amt and Account_type = :acc_type and Branch_code = :br_code'),name=name, gender=gender, uadd=uadd, amt=amt, acc_type=acc_type, br_code=br_code)
+            acc_no = query.all()[0][0]
+            return acc_no, 'A'
+        except IndexError:
+            query = conn.execute(text('insert into accounts (Account_name, Gender, Address, Balance , Account_type, Branch_code) values (:name, :gender, :uadd, :amt, :acc_type, :br_code)'),name=name, gender=gender, uadd=uadd, amt=amt, acc_type=acc_type, br_code=br_code)
+            query = conn.execute(text('select Account_number from accounts where Account_name = :name and Gender = :gender and Address = :uadd and Balance = :amt and Account_type = :acc_type and Branch_code = :br_code'),name=name, gender=gender, uadd=uadd, amt=amt, acc_type=acc_type, br_code=br_code)
+            acc_no = query.all()[0][0]
+            print('Accountftgyhuj   ',acc_no)
+            result = conn.execute(text('insert into account_login (Account_number, Password) values (:acc_no, :upass)'),acc_no=acc_no, upass=upass)
+            return acc_no, 'N'

@@ -16,7 +16,7 @@
 	<h2 class="subtitle has-text-centered">
 		Sign Up Form
 	</h2>
-	<form action="/data" method="post">
+	<form action="{{url_for('accopen')}}" method="post">
 		<div class="field">
 		<label class="label">Full Name</label>
 		<div class="control">
@@ -93,13 +93,24 @@
                 <div class="control">
                     <div class="select">
                     <select name="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
+                        <option>M</option>
+                        <option>F</option>
+                        <option>O</option>
                     </select>
                     </div>
                 </div>
                 </div>
+
+				<div class="field">
+					<label class="label">Opening Amount ₹ &nbsp;</label>
+					<div class="control has-icons-left
+								has-icons-right">
+								<input name='amt' value="0"class="input is-rounded" type="number" placeholder="Rounded input">
+						<span class="icon is-small is-left">
+						<i class="fas fa-key"></i>
+						</span>
+					</div>
+					</div>
 
 		<div class="field">
 		<div class="control">
