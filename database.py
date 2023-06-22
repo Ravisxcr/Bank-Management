@@ -71,7 +71,7 @@ def acc_emp(emp_no):
 
 def all_tr():
     with engine.connect() as conn:
-        tr = conn.execute(text("select * from tranaction order by tr_time desc"))
+        tr = conn.execute(text("select * from tranaction order by tr_time desc limit 100"))
         return tr.all()
 
 def all_customer():
@@ -139,14 +139,17 @@ def new_acc(data):
         upass  = data['upass']
         br_code = branch_code(branch)
         try:
-            query = conn.execute(text('select Account_number from accounts where Account_name = :name and Gender = :gender and Address = :uadd and Balance = :amt and Account_type = :acc_type and Branch_code = :br_code'),name=name, gender=gender, uadd=uadd, amt=amt, acc_type=acc_type, br_code=br_code)
+            query = conn.execute(text('select Account_number from accounts where Account_name = :name and Gender = :gender and Address = :uadd and Account_type = :acc_type and Branch_code = :br_code'),name=name, gender=gender, uadd=uadd, acc_type=acc_type, br_code=br_code)
             acc_no = query.all()[0][0]
             return acc_no, 'A'
         except IndexError:
             query = conn.execute(text('insert into accounts (Account_name, Gender, Address, Balance , Account_type, Branch_code) values (:name, :gender, :uadd, :amt, :acc_type, :br_code)'),name=name, gender=gender, uadd=uadd, amt=amt, acc_type=acc_type, br_code=br_code)
+
             query = conn.execute(text('select Account_number from accounts where Account_name = :name and Gender = :gender and Address = :uadd and Balance = :amt and Account_type = :acc_type and Branch_code = :br_code'),name=name, gender=gender, uadd=uadd, amt=amt, acc_type=acc_type, br_code=br_code)
             acc_no = query.all()[0][0]
-            print('Accountftgyhuj   ',acc_no)
+
+            result = conn.execute(text("insert into tranaction (Tr_amount,  Tr_type,  Account_number,  tr_info, tr_balance) values (:amt, 'C', :acc, :trinfo, :trbal)"),amt=amt,acc=acc_no, trinfo='Bank Opening', trbal=amt)
+           
             result = conn.execute(text('insert into account_login (Account_number, Password) values (:acc_no, :upass)'),acc_no=acc_no, upass=upass)
             return acc_no, 'N'
         

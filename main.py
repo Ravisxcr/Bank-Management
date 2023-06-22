@@ -22,6 +22,9 @@ def userlogin():
       session['ecode'] = emp_code(session['user'])
       return redirect(url_for('edashboard'))
     
+    else:
+      return redirect(url_for('debit_msgr'))
+    
   return render_template('userlogin.html')
 
 # User Dashboard
@@ -162,4 +165,5 @@ def dropsession():
     session.pop('ecode',None)
   return redirect(url_for('userlogin'))
 
-app.run(debug=True)
+if __name__ == '__main__':
+  app.run(debug=True)
