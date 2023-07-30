@@ -1,6 +1,7 @@
 **Bank Management System**
 
 *Developed in Python with the use of Flask as the backend and HTML, CSS for the Frontend*
+
 *Used SQLAlchemy library to access the mySQL database*
 
 To install dependencies
