@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-engine = create_engine("mysql://root:ubuntu@localhost/bank",echo = True)
+engine = create_engine("mysql://root:tiger@localhost/bank",echo = True)
 
 def check_ulogin(uname, upass):
     with engine.connect() as conn:
