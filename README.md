@@ -53,9 +53,3 @@ To set up the Bank Management System, follow these steps:
 
 - For database schema changes, update the SQL script and modify the corresponding models in the `database.py` file.
 
-
----
-
-Simplify banking operations with the Bank Management System developed using Flask and MySQL. Whether you're managing customer accounts or overseeing transactions, this application provides a comprehensive solution for efficient banking management.
-
-![Bank Management](images/bank_management.jpg)
